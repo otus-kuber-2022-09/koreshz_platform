@@ -4,16 +4,6 @@ metadata:
   name: ken
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: view
-  namespace: dev
-rules:
-  - apiGroups: [""]
-    resources: ["*"]
-    verbs: ["get", "list", "watch"]
----
-apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: ken-the-viewer
@@ -24,5 +14,5 @@ subjects:
   apiGroup: ""
 roleRef:
   kind: Role
-  name: ken
+  name: view
   apiGroup: ""
