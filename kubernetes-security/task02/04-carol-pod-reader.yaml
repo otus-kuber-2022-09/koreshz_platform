@@ -4,9 +4,9 @@ metadata:
   name: read-pods
   namespace: prometheus
 subjects:
-- kind: User
-  name: carol
-  apiGroup: ""
+- kind: Group
+  name: system:serviceaccounts:prometheus
+  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: pod-reader
