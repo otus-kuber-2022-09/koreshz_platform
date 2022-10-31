@@ -6,7 +6,6 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: jane
-  namespace: dev
   apiGroup: ""
 roleRef:
   kind: ClusterRole
