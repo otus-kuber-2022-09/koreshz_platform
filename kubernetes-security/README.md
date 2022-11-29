@@ -24,3 +24,19 @@
   name: system:serviceaccounts:prometheus
   apiGroup: rbac.authorization.k8s.io
 ```
+Сделать аккаунт администратором в пространстве имен:
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jane-dev-admin
+  namespace: dev
+subjects:
+- kind: ServiceAccount
+  name: jane
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+```
