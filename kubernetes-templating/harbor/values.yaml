@@ -1,0 +1,24 @@
+expose:
+  type: ingress
+  # NGINX Ingress confiugration
+  ingress:
+    hosts:
+      core: "harbor.62.84.120.150.nip.io"
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      # choose letsencrypt-staging or letsencrypt-prod
+      cert-manager.io/cluster-issuer: "letsencrypt-production"
+      # To be used for the nginx ingress on AKS:
+      kubernetes.io/ingress.class: nginx
+  tls:
+    enabled: true
+    certSource: secret
+    secret: 
+      secretName: "tls-harbor"
+
+# The external URL for Harbor core service.
+externalURL: "https://harbor.62.84.120.150.nip.io"
+

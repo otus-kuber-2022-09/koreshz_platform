@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  annotations:
+    # choose letsencrypt-staging or letsencrypt-prod
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    # To be used for the nginx ingress on AKS:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts:
+    - shop.62.84.120.150.nip.io
+    secretName: shop-tls
+  rules:
+  - host: shop.62.84.120.150.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+
