@@ -141,4 +141,12 @@ def delete_object_make_backup(body, **kwargs):
     api.create_namespaced_job('default', backup_job)
     wait_until_job_end(f"backup-{name}-job")
 
+    api = kubernetes.client.CoreV1Api()
+    
+    # Deleting mysql persistent volume because it is not deleted with its owner
+    try:
+        api.delete_persistent_volume(f"{name}-pv")
+    except Exception as exc:
+        print(exc)
+
     return {'message': "mysql and its children resources deleted"}
