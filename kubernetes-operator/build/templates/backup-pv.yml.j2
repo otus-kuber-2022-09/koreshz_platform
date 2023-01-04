@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 1Gi
+    storage: {{ storage_size }}
   hostPath:
     path: /data/pv-backup/
  
