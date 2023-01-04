@@ -14,8 +14,6 @@ spec:
       containers:
       - image: {{ image }}
         name: {{ name }}
-        args:
-        - "--ignore-db-dir=lost+found"
         env:
         - name: MYSQL_ROOT_PASSWORD # так делать не нужно, тут лучше secret
           value: {{ password }}

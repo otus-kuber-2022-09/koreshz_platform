@@ -11,7 +11,7 @@ spec:
       restartPolicy: OnFailure
       containers:
       - name: backup
-        image: mysql:5.7
+        image: {{ image }}
         imagePullPolicy: IfNotPresent
         command:
         - /bin/sh

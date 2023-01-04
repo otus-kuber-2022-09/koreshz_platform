@@ -130,15 +130,15 @@ def delete_object_make_backup(body, **kwargs):
 
     delete_success_jobs(name)
 
-    #api = kubernetes.client.BatchV1Api()
-    #backup_job = render_template('backup-job.yml.j2', {
-    #    'name': name,
-    #    'image': image,
-    #    'password': password,
-    #    'database': database,
-    #})
-    #print("Staring backup job")
-    #api.create_namespaced_job('default', backup_job)
-    #wait_until_job_end(f"backup-{name}-job")
+    api = kubernetes.client.BatchV1Api()
+    backup_job = render_template('backup-job.yml.j2', {
+        'name': name,
+        'image': image,
+        'password': password,
+        'database': database,
+    })
+    print("Staring backup job")
+    api.create_namespaced_job('default', backup_job)
+    wait_until_job_end(f"backup-{name}-job")
 
     return {'message': "mysql and its children resources deleted"}
