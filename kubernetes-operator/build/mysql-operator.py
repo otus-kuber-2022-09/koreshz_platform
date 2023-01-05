@@ -102,7 +102,7 @@ def mysql_on_create(body, spec, **kwargs):
     api.create_namespaced_deployment('default', deployment)
 
     try:
-        backup_pv = render_template('backup-pv.yml.j2', {'name': name})
+        backup_pv = render_template('backup-pv.yml.j2', {'name': name, 'storage_size': '1Gi',})
         api = kubernetes.client.CoreV1Api()
         api.create_persistent_volume(backup_pv)
     except kubernetes.client.rest.ApiException as exc:
