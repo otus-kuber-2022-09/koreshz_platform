@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: alpine
+      image: alpine
+      command: ["apk", "add", "curl", "jq"]
+      command: ["sleep"]
+      args: ["300"]
+  serviceAccountName: vault-auth
+  #automountServiceAccountToken: true
